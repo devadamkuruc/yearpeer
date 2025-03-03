@@ -29,6 +29,8 @@ model User {
   image         String?
   role          UserRole  @default(USER)
   accounts      Account[]
+  goals         Goal[]
+  tasks         Task[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -53,4 +55,46 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+}
+
+model Goal {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String   @db.VarChar(255)
+  description String?  @db.Text
+  startDate   DateTime
+  endDate     DateTime
+  color       String   @db.VarChar(7)
+  impact      Int      @db.Integer // 1-5
+  tasks       Task[]
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([userId, startDate, endDate])
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  userId      String
+  goalId      String? // Optional relation to a goal
+  title       String
+  description String?
+  date        DateTime
+  completed   Boolean  @default(false)
+
+  // Relations
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  goal Goal? @relation(fields: [goalId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([goalId])
+  @@index([userId, date])
 }
