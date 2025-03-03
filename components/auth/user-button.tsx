@@ -17,7 +17,6 @@ import {logout} from "@/actions/logout";
 
 const UserButton = () => {
     const user = useCurrentUser();
-    
 
     return (
         <DropdownMenu>
@@ -25,7 +24,7 @@ const UserButton = () => {
                 <Avatar className="size-9">
                     <AvatarImage src={user?.image || ""}/>
                     <AvatarFallback className="bg-white">
-                        <User className="text-black"/>
+                        <User className="text-black" size={16}/>
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
