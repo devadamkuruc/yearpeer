@@ -114,12 +114,6 @@ export function CalendarContent({ initialGoals, initialTasks, initialYear }: Cal
                                 />
                             )
                         )}
-
-                        <MonthTabs
-                            currentYear={currentYear}
-                            currentMonth={currentMonth}
-                            onViewChange={handleViewChange}
-                        />
                     </div>
                 </div>
             </div>

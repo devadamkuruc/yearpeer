@@ -1,7 +1,14 @@
 "use client";
 
 import React, {useState} from 'react';
-import {format, startOfMonth, isSameMonth, isWithinInterval, isSameDay, isAfter} from 'date-fns';
+import {
+    format,
+    startOfMonth,
+    isSameMonth,
+    isWithinInterval,
+    isSameDay,
+    isAfter
+} from 'date-fns';
 import {GoalWithTasks} from "@/data/goals";
 import {CalendarView, DateRange} from "@/types";
 import useGoalStore from '@/store/goal-store';
@@ -85,12 +92,18 @@ const YearView: React.FC<YearViewProps> = ({
         const firstDayOfMonth = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
         const firstDayWeekday = firstDayOfMonth.getDay();
 
+        // Calculate the date of the first cell in the grid (might be from previous month)
+        const startingDate = new Date(monthDate);
+        startingDate.setDate(1 - firstDayWeekday);
+
         // Calculate remaining days to complete the grid
         const totalDays = 42; // 6 rows × 7 days
 
         const days = Array.from({length: totalDays}, (_, i) => {
-            const dayNumber = i - firstDayWeekday + 1;
-            const currentDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), dayNumber);
+            // Calculate the actual date for this cell
+            const currentDate = new Date(startingDate);
+            currentDate.setDate(startingDate.getDate() + i);
+
             const isValidDate = isSameMonth(currentDate, monthDate);
             const dateGoals = isValidDate ? getDateGoals(currentDate) : [];
             const isUnavailable = dateGoals.length > 0;
@@ -105,15 +118,7 @@ const YearView: React.FC<YearViewProps> = ({
                 <div
                     key={i}
                     onClick={() => isValidDate ? handleDateClick(currentDate) : null}
-                    className={`
-            w-full flex items-center justify-center relative group rounded-md
-            ${isValidDate ? 'cursor-pointer hover:bg-gray-100' : 'text-gray-300 cursor-default'}
-            ${isValidDate && !isUnavailable && isInRange ? 'bg-indigo-100' : ''}
-            ${isValidDate && !isUnavailable && isStart ? 'bg-indigo-500 text-white' : ''}
-            ${isValidDate && !isUnavailable && isEnd ? 'bg-indigo-500 text-white' : ''}
-            ${isValidDate && !isUnavailable && isInRange && !isStart && !isEnd ? 'bg-indigo-100' : ''}
-            text-sm
-          `}
+                    className={`w-full flex items-center justify-center relative group rounded-md ${isValidDate ? 'cursor-pointer hover:bg-gray-100' : 'text-gray-300 cursor-default'} ${isValidDate && !isUnavailable && isInRange ? 'bg-indigo-100' : ''} ${isValidDate && !isUnavailable && isStart ? 'bg-indigo-500 text-white' : ''} ${isValidDate && !isUnavailable && isEnd ? 'bg-indigo-500 text-white' : ''} ${isValidDate && !isUnavailable && isInRange && !isStart && !isEnd ? 'bg-indigo-100' : ''} text-sm `}
                     style={{
                         ...(isValidDate && isUnavailable && {
                             backgroundColor: goalColor,
@@ -121,7 +126,7 @@ const YearView: React.FC<YearViewProps> = ({
                         })
                     }}
                 >
-                    {isValidDate ? dayNumber : ''}
+                    {currentDate.getDate()}
                     {isValidDate && dateGoals.length > 0 && (
                         <div
                             className="absolute inset-0 group-hover:bg-black/10 transition-colors rounded-md"
@@ -146,11 +151,12 @@ const YearView: React.FC<YearViewProps> = ({
 
         return (
             <div className="rounded-xl pb-2 bg-white flex flex-col h-full">
-                <div className="flex justify-center items-center gap-2 font-bold rounded-t-xl py-2 text-center bg-black text-white cursor-pointer"
-                     onClick={() => onMonthClick('month', monthIndex)}
+                <div
+                    className="flex justify-center items-center gap-2 font-bold rounded-t-xl py-2 text-center bg-black text-white cursor-pointer"
+                    onClick={() => onMonthClick('month', monthIndex)}
                 >
                     {format(monthDate, 'MMMM')}
-                    <ExternalLink size={14} />
+                    <ExternalLink size={14}/>
                 </div>
 
                 {/* Weekday headers with fixed height */}
@@ -164,8 +170,14 @@ const YearView: React.FC<YearViewProps> = ({
                 </div>
 
                 {/* Days grid that takes all remaining space */}
-                <div className="px-2 grid grid-cols-7 grid-rows-6 gap-1 flex-1 divide-y divide-black/2">
-                    {days}
+                <div
+                    className="px-2 flex flex-col divide-y divide-black/2 flex-1">
+                    {Array.from({length: 6}).map((_, rowIndex) => (
+                        <div key={rowIndex}
+                             className="grid grid-cols-7 gap-1 flex-1">
+                            {days.slice(rowIndex * 7, (rowIndex + 1) * 7)}
+                        </div>
+                    ))}
                 </div>
             </div>
         );
@@ -173,7 +185,7 @@ const YearView: React.FC<YearViewProps> = ({
 
     return (
         <div className="flex flex-1 items-center w-full">
-            <div className="grid grid-cols-4 gap-4 w-full">
+            <div className="grid grid-cols-4 gap-4 w-full h-full py-4">
                 {months.map((month, index) => (
                     <div key={index} className="flex flex-col h-full">
                         {renderMonth(month, index)}
