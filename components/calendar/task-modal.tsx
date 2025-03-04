@@ -50,14 +50,14 @@ const TaskModal: React.FC<TaskModalProps> = ({
         if (isOpen && date) {
             const loadTasks = async () => {
                 try {
-                    // First check if we already have tasks for this date in the store
-                    let dateTasks = getTasksForDate(date);
+                    // Reset any existing tasks first
+                    setTasks([]);
 
-                    // If not, fetch them from the server
+                    // Then fetch new tasks for this date
+                    let dateTasks = getTasksForDate(date);
                     if (dateTasks.length === 0) {
                         dateTasks = await fetchTasksForDate(date);
                     }
-
                     setTasks(dateTasks);
                 } catch (error) {
                     console.error("Error loading tasks:", error);
