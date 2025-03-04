@@ -15,6 +15,7 @@ import YearPicker from "@/components/calendar/year-picker";
 import Image from "next/image";
 import { GoalWithTasks } from '@/data/goals';
 import { DayTasks } from '@/data/tasks';
+import {Button} from "@/components/ui/button";
 
 interface CalendarContentProps {
     initialGoals: GoalWithTasks[];
@@ -79,9 +80,9 @@ export function CalendarContent({ initialGoals, initialTasks, initialYear }: Cal
                 <div className="flex-1">
                     <div className="flex flex-col w-full h-screen justify-between p-4">
                         <div className="flex w-full justify-between">
-                            <Link href="/calendar">
+                            <Button className="border-none outline-none shadow-none bg-transparent cursor-pointer hover:bg-transparent" onClick={() => handleViewChange('year')}>
                                 <Image src="/yearpeer-logo.svg" alt="YearPeer" width={120} height={27} />
-                            </Link>
+                            </Button>
 
                             <YearPicker
                                 year={currentYear}
