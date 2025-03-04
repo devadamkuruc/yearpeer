@@ -258,15 +258,15 @@ const TaskModal: React.FC<TaskModalProps> = ({
                                 <div className="flex flex-col gap-2">
                                     <Label htmlFor="goal-select">Associated Goal (Optional)</Label>
                                     <Select
-                                        value={selectedGoalId || ""}
-                                        onValueChange={(value) => setSelectedGoalId(value || undefined)}
+                                        value={selectedGoalId || "none"}
+                                        onValueChange={(value) => setSelectedGoalId(value === "none" ? undefined : value)}
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="No associated goal" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectGroup>
-                                                <SelectItem value="">No associated goal</SelectItem>
+                                                <SelectItem value="none">No associated goal</SelectItem>
                                                 {availableGoals.map(goal => (
                                                     <SelectItem key={goal.id} value={goal.id}>
                                                         {goal.title}
@@ -457,7 +457,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
                         )}
                     </div>
                 </div>
-                
+
             </DialogContent>
         </Dialog>
     );
