@@ -3,6 +3,7 @@ import {
     ClerkProvider,
 } from '@clerk/nextjs'
 import './globals.css'
+import {dark} from "@clerk/themes";
 
 export const metadata: Metadata = {
     title: 'Clerk Next.js Quickstart',
@@ -15,7 +16,10 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <ClerkProvider>
+        <ClerkProvider
+        appearance={{
+            baseTheme: dark
+        }}>
             <html lang="en">
             <body className={`antialiased`}>
             {children}

@@ -34,3 +34,7 @@ export const generateCalendarDays = (month: number, year: number): (number | nul
 
     return days;
 };
+
+export function formatDateForInput(date: Date) {
+    return date.toISOString().split('T')[0]
+}

@@ -7,10 +7,10 @@ export default function CalendarLayout({
 }>) {
 
     return (
-        <div className="flex h-screen">
+        <div className="flex min-h-screen">
             <CalendarSidebar/>
 
-            <div className="flex-1 bg-zinc-900 ring-1 ring-white/10 rounded-xl my-2 mr-2">
+            <div className="flex-1 bg-zinc-900 ring-1 ring-white/10 rounded-xl my-2 ml-[21%] mr-2">
                 {children}
             </div>
         </div>
