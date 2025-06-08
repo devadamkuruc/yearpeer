@@ -13,10 +13,10 @@ import {
 } from "@/components/ui/sidebar";
 
 import prisma from "@/lib/prisma";
-import UserAvatar from "@/components/layout/user-avatar";
+import UserAvatar from "@/components/common/user-avatar";
 import {auth} from "@clerk/nextjs/server";
 import {Goal} from "@/app/generated/prisma";
-import SidebarGoals from "@/components/layout/sidebar-goals";
+import SidebarGoals from "@/components/calendar/sidebar-goals";
 
 export default async function CalendarSidebar() {
     const { userId } = await auth()

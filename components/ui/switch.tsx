@@ -30,13 +30,13 @@ export function SwitchField({
       {...props}
       className={clsx(
         className,
-        // Base layout
+        // Base common
         'grid grid-cols-[1fr_auto] gap-x-8 gap-y-1 sm:grid-cols-[1fr_auto]',
-        // Control layout
+        // Control common
         '*:data-[slot=control]:col-start-2 *:data-[slot=control]:self-start sm:*:data-[slot=control]:mt-0.5',
-        // Label layout
+        // Label common
         '*:data-[slot=label]:col-start-1 *:data-[slot=label]:row-start-1',
-        // Description layout
+        // Description common
         '*:data-[slot=description]:col-start-1 *:data-[slot=description]:row-start-2',
         // With description
         'has-data-[slot=description]:**:data-[slot=label]:font-medium'
@@ -177,7 +177,7 @@ export function Switch({
       <span
         aria-hidden="true"
         className={clsx(
-          // Basic layout
+          // Basic common
           'pointer-events-none relative inline-block size-4.5 rounded-full sm:size-3.5',
           // Transition
           'translate-x-0 transition duration-200 ease-in-out',

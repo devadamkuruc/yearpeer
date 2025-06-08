@@ -30,13 +30,13 @@ export function CheckboxField({
       {...props}
       className={clsx(
         className,
-        // Base layout
+        // Base common
         'grid grid-cols-[1.125rem_1fr] gap-x-4 gap-y-1 sm:grid-cols-[1rem_1fr]',
-        // Control layout
+        // Control common
         '*:data-[slot=control]:col-start-1 *:data-[slot=control]:row-start-1 *:data-[slot=control]:mt-0.75 sm:*:data-[slot=control]:mt-1',
-        // Label layout
+        // Label common
         '*:data-[slot=label]:col-start-2 *:data-[slot=label]:row-start-1',
-        // Description layout
+        // Description common
         '*:data-[slot=description]:col-start-2 *:data-[slot=description]:row-start-2',
         // With description
         'has-data-[slot=description]:**:data-[slot=label]:font-medium'
@@ -46,7 +46,7 @@ export function CheckboxField({
 }
 
 const base = [
-  // Basic layout
+  // Basic common
   'relative isolate flex size-4.5 items-center justify-center rounded-[0.3125rem] sm:size-4',
   // Background color + shadow applied to inset pseudo element, so shadow blends with border in light mode
   'before:absolute before:inset-0 before:-z-10 before:rounded-[calc(0.3125rem-1px)] before:bg-white before:shadow-sm',

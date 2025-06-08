@@ -1,8 +1,8 @@
 'use client'
 
-import MonthCalendar from "@/components/layout/month-calendar";
+import MonthCalendar from "@/components/calendar/month-calendar";
 import {Goal} from "@/app/generated/prisma";
-import CreateGoalDialog from "@/components/layout/create-goal-dialog";
+import CreateGoalDialog from "@/components/calendar/create-goal-dialog";
 import {useState} from "react";
 
 interface YearCalendarProps {

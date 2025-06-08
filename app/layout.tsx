@@ -20,7 +20,7 @@ export default function RootLayout({
         appearance={{
             baseTheme: dark
         }}>
-            <html lang="en">
+            <html lang="en" suppressHydrationWarning>
             <body className={`antialiased`}>
             {children}
             </body>

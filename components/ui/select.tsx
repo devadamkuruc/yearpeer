@@ -13,7 +13,7 @@ export const Select = forwardRef(function Select(
       data-slot="control"
       className={clsx([
         className,
-        // Basic layout
+        // Basic common
         'group relative block w-full',
         // Background color + shadow applied to inset pseudo element, so shadow blends with border in light mode
         'before:absolute before:inset-px before:rounded-[calc(var(--radius-lg)-1px)] before:bg-white before:shadow-sm',
@@ -30,7 +30,7 @@ export const Select = forwardRef(function Select(
         multiple={multiple}
         {...props}
         className={clsx([
-          // Basic layout
+          // Basic common
           'relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
           // Horizontal padding
           multiple

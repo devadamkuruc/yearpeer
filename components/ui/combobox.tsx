@@ -40,7 +40,7 @@ export function Combobox<T>({
         data-slot="control"
         className={clsx([
           className,
-          // Basic layout
+          // Basic common
           'relative block w-full',
           // Background color + shadow applied to inset pseudo element, so shadow blends with border in light mode
           'before:absolute before:inset-px before:rounded-[calc(var(--radius-lg)-1px)] before:bg-white before:shadow-sm',
@@ -63,7 +63,7 @@ export function Combobox<T>({
           placeholder={placeholder}
           className={clsx([
             className,
-            // Basic layout
+            // Basic common
             'relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
             // Horizontal padding
             'pr-[calc(--spacing(10)-1px)] pl-[calc(--spacing(3.5)-1px)] sm:pr-[calc(--spacing(9)-1px)] sm:pl-[calc(--spacing(3)-1px)]',
@@ -144,7 +144,7 @@ export function ComboboxOption<T>({
     <Headless.ComboboxOption
       {...props}
       className={clsx(
-        // Basic layout
+        // Basic common
         'group/option grid w-full cursor-default grid-cols-[1fr_--spacing(5)] items-baseline gap-x-2 rounded-lg py-2.5 pr-2 pl-3.5 sm:grid-cols-[1fr_--spacing(4)] sm:py-1.5 sm:pr-2 sm:pl-3',
         // Typography
         'text-base/6 text-zinc-950 sm:text-sm/6 dark:text-white forced-colors:text-[CanvasText]',

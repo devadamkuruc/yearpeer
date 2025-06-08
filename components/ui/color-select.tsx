@@ -64,7 +64,7 @@ export const ColorSelect = forwardRef(function ColorSelect(
             data-slot="control"
             className={clsx([
                 className,
-                // Basic layout - matches your Select component exactly
+                // Basic common - matches your Select component exactly
                 'group relative block w-full',
                 // Background color + shadow applied to inset pseudo element, so shadow blends with border in light mode
                 'before:absolute before:inset-px before:rounded-[calc(var(--radius-lg)-1px)] before:bg-white before:shadow-shadow-sm',
@@ -80,7 +80,7 @@ export const ColorSelect = forwardRef(function ColorSelect(
                 <Headless.ListboxButton
                     ref={ref}
                     className={clsx([
-                        // Basic layout - matches your Select exactly
+                        // Basic common - matches your Select exactly
                         'relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
                         // Horizontal padding - matches your Select
                         'pr-[calc(--spacing(10)-1px)] pl-[calc(--spacing(3.5)-1px)] sm:pr-[calc(--spacing(9)-1px)] sm:pl-[calc(--spacing(3)-1px)]',

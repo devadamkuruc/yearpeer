@@ -26,7 +26,7 @@ export function Listbox<T>({
         aria-label={ariaLabel}
         className={clsx([
           className,
-          // Basic layout
+          // Basic common
           'group relative block w-full',
           // Background color + shadow applied to inset pseudo element, so shadow blends with border in light mode
           'before:absolute before:inset-px before:rounded-[calc(var(--radius-lg)-1px)] before:bg-white before:shadow-sm',
@@ -45,7 +45,7 @@ export function Listbox<T>({
           options={options}
           placeholder={placeholder && <span className="block truncate text-zinc-500">{placeholder}</span>}
           className={clsx([
-            // Basic layout
+            // Basic common
             'relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
             // Set minimum height for when no value is selected
             'min-h-11 sm:min-h-9',
@@ -130,7 +130,7 @@ export function ListboxOption<T>({
         return (
           <div
             className={clsx(
-              // Basic layout
+              // Basic common
               'group/option grid cursor-default grid-cols-[--spacing(5)_1fr] items-baseline gap-x-2 rounded-lg py-2.5 pr-3.5 pl-2 sm:grid-cols-[--spacing(4)_1fr] sm:py-1.5 sm:pr-3 sm:pl-1.5',
               // Typography
               'text-base/6 text-zinc-950 sm:text-sm/6 dark:text-white forced-colors:text-[CanvasText]',

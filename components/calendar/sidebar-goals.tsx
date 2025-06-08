@@ -2,9 +2,9 @@
 
 import {SidebarHeading, SidebarItem} from "@/components/ui/sidebar";
 import {Goal} from "@/app/generated/prisma";
-import CreateGoalDialog from "@/components/layout/create-goal-dialog";
+import CreateGoalDialog from "@/components/calendar/create-goal-dialog";
 import {useState} from "react";
-import EditGoalDialog from "@/components/layout/edit-goal-dialog";
+import EditGoalDialog from "@/components/calendar/edit-goal-dialog";
 
 interface SidebarGoalsProps {
     goals: Goal[]

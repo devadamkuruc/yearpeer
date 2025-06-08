@@ -1,4 +1,4 @@
-import YearCalendar from "@/components/layout/year-calendar";
+import YearCalendar from "@/components/calendar/year-calendar";
 import {getUserGoals} from "@/lib/actions/goals";
 import {Goal} from "@/app/generated/prisma";
 
